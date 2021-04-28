@@ -16,11 +16,14 @@ function checkInputs () {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
-  //chekcing for username  
+  let successCount = 0;
+  
+    //chekcing for username  
     if (usernameValue === '') {
         setErrorFor(username, 'Username cannot be blank');
     } else {
         setSuccessFor(username);
+        successCount+=1;
     }
 //checking for email
     if (emailValue === '') {
@@ -31,6 +34,7 @@ function checkInputs () {
     
     } else {
         setSuccessFor(email);
+        successCount+=1;
     }
 //checking for pasword
     if (passwordValue === '') {
@@ -39,6 +43,7 @@ function checkInputs () {
         setErrorFor(password, 'Password not valid')
     }  else {
         setSuccessFor(password);
+        successCount+=1;
     }
 //checking for password2
     if (password2Value === '') {
@@ -47,8 +52,13 @@ function checkInputs () {
         setErrorFor(password2, 'Password2 not valid');
     }  else {
         setSuccessFor(password2);
+        successCount+=1;
     }
+//check for successfull registration
+    if(successCount == 4) alert('Your registration was successfull!');
 }
+
+
 
 
 function setErrorFor(input, message) {
