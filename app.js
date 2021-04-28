@@ -16,13 +16,13 @@ function checkInputs () {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
-    
+  //chekcing for username  
     if (usernameValue === '') {
         setErrorFor(username, 'Username cannot be blank');
     } else {
         setSuccessFor(username);
     }
-
+//checking for email
     if (emailValue === '') {
          setErrorFor(email, 'Email cannot be blank');
     
@@ -32,7 +32,24 @@ function checkInputs () {
     } else {
         setSuccessFor(email);
     }
+//checking for pasword
+    if (passwordValue === '') {
+        setErrorFor(password, 'Password cannot be blank');
+    }else if (!isPassword(password)) {
+        setErrorFor(password, 'Password not valid')
+    }  else {
+        setSuccessFor(password);
+    }
+//checking for password2
+    if (password2Value === '') {
+        setErrorFor(password2, 'Password2 cannot be blank');
+    }else if(password2Value !== passwordValue){
+        setErrorFor(password2, 'Password2 not valid');
+    }  else {
+        setSuccessFor(password2);
+    }
 }
+
 
 function setErrorFor(input, message) {
     const formControl = input.parentElement; // .form-control
@@ -54,4 +71,8 @@ function setSuccessFor(input) {
 function isEmail (email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
+}
+
+function isPassword (password) {
+   if( password.value.length > 6) return true; 
 }
